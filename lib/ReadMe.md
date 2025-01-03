@@ -1,0 +1,3 @@
+- I added a SignUppage and a custom form field 
+- with form field valdation but a dummy one without using regex
+- a Navigation to the home screen
