@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_project/custom_form_field.dart';
+import 'package:new_project/homePage.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -68,7 +69,11 @@ class SignUp extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    return print("you are looged");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ));
                   }
                 },
                 child: Text("SignUp"))
