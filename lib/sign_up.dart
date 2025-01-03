@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_project/custom_form_field.dart';
 import 'package:new_project/homePage.dart';
@@ -7,7 +6,6 @@ class SignUp extends StatelessWidget {
   SignUp({super.key});
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
-  void isValid() {}
 
   @override
   Widget build(BuildContext context) {
@@ -69,17 +67,39 @@ class SignUp extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
-                        ));
+                    showMyDialog(context);
                   }
                 },
                 child: Text("SignUp"))
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      // barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Welcome'),
+          content: Text("you are logged in"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('close'),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
