@@ -90,11 +90,37 @@ class SignUp extends StatelessWidget {
               child: const Text('close'),
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ));
+
+                Navigator.of(context).push(
+                  // PageRouteBuilder Creates a custom page route with custom animations
+                  // pageBuilder will Defines the screen to navigate to (HomeScreen)
+                  // and transitionsBuilder Defines the custom transition and the child is the home screen
+                  PageRouteBuilder(
+                    // Sets the duration of the fade-in animation
+                    transitionDuration: const Duration(milliseconds: 500),
+                    // Sets the duration of the reverse fade-out animation
+                    reverseTransitionDuration:
+                        const Duration(milliseconds: 500),
+
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const HomeScreen(),
+
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      // Fade transition for the screen transition
+                      // it has opacity which will be invisble at first(0) then fully visible(1)
+                      //tween i think it makes an in between frames to make the transition more smooth and we will aplly it using drive
+                      //ease in and out makes the transition ends and starts slow and in the middle more fast
+                      return FadeTransition(
+                        opacity: animation.drive(
+                          Tween(begin: 0.0, end: 1.0)
+                              .chain(CurveTween(curve: Curves.easeInOut)),
+                        ),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
               },
             ),
           ],
