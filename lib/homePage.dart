@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,11 +9,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  changeLang() {
+    if (context.locale == Locale('en', 'US')) {
+      context.setLocale(Locale('ar', 'EG'));
+    } else {
+      context.setLocale(Locale('en', 'US'));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        actions: [
+          IconButton(onPressed: changeLang, icon: Icon(Icons.language))
+        ],
+        title: Text(tr("Home")),
       ),
       body: SingleChildScrollView(
         //to make the page scrollable
@@ -20,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Our Products"),
+            Text(tr("Our Products")),
             Center(
               // container that has page view which contains an image
               child: Container(
@@ -37,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            Text("Recently Purchased"),
+            Text(tr("Recently Purchased")),
             //recently purchased section (Gridview with tw items in a row)
             Container(
               height: MediaQuery.of(context).size.height * 0.3,
@@ -80,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
             ),
 
-            Text("Hot Offers"),
+            Text(tr("Hot Offers")),
             // hot offers section which contains a horizontal listview
             Container(
               height: MediaQuery.of(context).size.height * 0.5,
