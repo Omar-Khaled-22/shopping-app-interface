@@ -7,4 +7,4 @@ once the close button in the dialog is clicked it should navigate the user to th
 (You will not find it at the submitted resources )
 
 
-# I added a fade in-out transition between sign up page and home page
+## I added a fade in-out transition between sign up page and home page
