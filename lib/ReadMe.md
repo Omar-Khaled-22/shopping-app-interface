@@ -10,3 +10,5 @@ once the close button in the dialog is clicked it should navigate the user to th
 ## I added a fade in-out transition between sign up page and home page
 
 ## I added a localization to the home page using easy localization package
+
+## I added translation folder in the assets folder that contains ar and en json files
